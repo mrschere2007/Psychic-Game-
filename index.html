@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Psychic-Game</title>
+</head>
+
+<body>
+    <h1> The Psychic Game</h1>
+    <h2>Guess what letter I'm thinking of</h2>
+    <h3>Wins:<span id= "Wins"></span></h3>
+    <h3>Losses:<span id= "Losses"></span></h3>
+    <h3>Guesses Left:<span id= "Guesses Left"></span></h3>
+    <h3>Your Guesses so far:<span id= "Your Guesses so far"></span></h3>
+
+    <script type="text/javascript">
+        letter = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',
+            'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'
+        ];
+        //Variables to track the wins, losses and guesses. 
+        var wins = + 1;
+        var losses = + 1;
+        var guessLeft = 8;
+        var guessLetter;
+        var computerChoice = letter[Math.floor(Math.random() * letter.length)]
+        console.log(computerChoice)
+
+
+        //user guess vs computer guess 
+        document.onkeypress = function (event) {
+            guessLetter = event.key;
+            if (guessLetter === computerChoice) {
+                wins++;
+                computerChoice = letter[Math.floor(Math.random() * letter.length)]
+                guessLeft = 8;
+            } else {
+                guessLeft--;
+                if (guessLeft === 0) {
+                    losses++;
+                    computerChoice = letter[Math.floor(Math.random() * letter.length)]
+                    guessLeft = 8;
+                }
+
+               
+
+            }
+            // docement the wins, losses and guess in the console 
+             document.getElementById("Wins").innerHTML="" + wins;
+             document.getElementById("Losses").innerHTML="" + losses;
+             document.getElementById("Guesses Left").innerHTML="" + guessLeft;
+             document.getElementById("Your Guesses so far").innerHTML ="" + guessLetter;
+
+             console.log("computerChoice =", computerChoice, "guessLeft =", guessLeft, "guessLetter =", guessLetter, "losses=", losses, "wins=", wins)
+             
+
+
+
+        }
+    </script>
+</body>
+
+</html>
